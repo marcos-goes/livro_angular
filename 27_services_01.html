@@ -1,0 +1,36 @@
+<html ng-app="notesApp">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+        <script src="27_app.js"></script>
+    </head>
+    <body ng-controller="MainCtrl as mainCtrl">
+        <h2>Hello Controllers!</h2>
+        <button ng-click="mainCtrl.open('first')">Open First</button>
+        <button ng-click="mainCtrl.open('second')">Open Second</button>
+        <div ng-switch on="mainCtrl.tab">
+            <div ng-switch-when="first">
+                <div ng-controller="SubCtrl as sub">
+                    <h4>First Tab</h4>
+                    <ul>
+                        <li ng-repeat="item in sub.list">
+                            <span ng-bind="item.label"></span>
+                        </li>
+                    </ul>
+                    <button ng-click="sub.add()">Add More Items</button>
+                </div>
+            </div>
+            
+            <div ng-switch-when="second">
+                <div ng-controller="SubCtrl as sub">
+                    <h4>Second tab</h4>
+                    <ul>
+                        <li ng-repeat="item in sub.list">
+                            <span ng-bind="item.label"></span>
+                        </li>
+                    </ul>
+                    <button ng-click="sub.add()">Add More Items</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

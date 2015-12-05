@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="notesApp">
+    <head>
+        <title>Notes App</title>
+    </head>
+    <body ng-controller="MainController as ctrl">        
+        <div>
+            <select ng-model="ctrl.selectedContinent"
+                    ng-options="c.name for c in ctrl.continents">
+            </select>
+            Selected Continent: {{ctrl.selectedContinent.id}}-{{ctrl.selectedContinent.name}}
+        </div>
+        <br>
+        <div>
+            <select ng-model="ctrl.selectedCountry"
+                    ng-options="c.name group by ctrl.selectedContinentId for c in ctrl.countries">
+            </select>
+            Selected Country: {{ctrl.selectedCountry.id}}-{{ctrl.selectedCountry.name}}
+        </div>
+        <br>
+        <div ng-repeat="cont in ctrl.continents">
+            <input 
+                   type="radio"
+                   name="continents"
+                   ng-model="ctrl.selectedContinentId"
+                   ng-value="cont.id">{{cont.name}}</input>
+        </div>
+        Selected Continent Id: {{ctrl.selectedContinentId}}
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+        <script type="text/javascript">
+            angular.module('notesApp',[])
+                .controller("MainController", [function(){
+                    var self = this;
+                    self.countries = [
+                        {id: 1, cont: 3, name:'United States of America'},
+                        {id: 2, cont: 3, name: 'Brazil'},
+                        {id: 3, cont: 3, name:'Argentina'},
+                        {id: 4, cont: 1, name:'Uganda'},
+                        {id: 5, cont: 1, name:'Guine'},
+                        {id: 6, cont: 1, name:'South Africa'},
+                        {id: 7, cont: 5, name:'Germany'},
+                        {id: 8, cont: 5, name:'France'},
+                        {id: 9, cont: 2, name:'Japan'},
+                        {id: 10, cont: 4, name:'Australia'},
+                        {id: 11, cont: 5, name:'Portugal'},
+                        {id: 12, cont: 4, name:'New Zealand'},
+                        {id: 13, cont: 2, name:'China'},
+                        {id: 14, cont: 2, name:'India'}
+                    ];
+                    
+                    self.continents =[
+                        {id: 1, name:'Africa'},
+                        {id: 2, name:'Asia'},
+                        {id: 3, name:'America'},
+                        {id: 4, name:'Oceania'},
+                        {id: 5, name:'Europe'}
+                    ];
+                    
+                    self.selectedCountry = self.countries[0];
+                    self.selectedContinent = self.continents[0];
+                    self.selectedContinentId = 1;
+                }]);
+        </script>
+    </body>
+</html>

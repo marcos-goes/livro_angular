@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="notesApp">
+    <head>
+        <title>Notes App</title>
+    </head>
+    <body ng-controller="MainController as ctrl">        
+        <div ng-init="user = {gender: 'female'}">
+            <input type="radio"
+                   name="gender"
+                   ng-model="user.gender"
+                   value="male">Male
+            <input type="radio"
+                   name="gender"
+                   ng-model="user.gender"
+                   value="female">Female          
+        </div>      
+        <h4>Gender selected: {{user.gender}}</h4>
+        <br />
+        <div ng-init="otherGender = 'other'">
+            <input type="radio"
+                   name="gender2"
+                   ng-model="user.gender2"
+                   value="male">Male
+            <input type="radio"
+                   name="gender2"
+                   ng-model="user.gender2"
+                   value="female">Female
+            <input type="radio"
+                   name="gender2"
+                   ng-model="user.gender2"
+                   ng-value="otherGender">{{otherGender}}
+        </div>
+        <h4>Gender selected: {{user.gender2}}</h4>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+        <script type="text/javascript">
+            angular.module('notesApp',[])
+                .controller("MainController", [function(){
+                    var self = this;
+                    self.sports = [
+                        {label:'Baseball', selected:'YES'},
+                        {label:'Cricket', selected:'NO'},
+                        {label:'Soccer', selected:'NO'},
+                        {label:'Swimming', selected:'YES'},
+                    ];
+                }]);
+        </script>
+    </body>
+</html>

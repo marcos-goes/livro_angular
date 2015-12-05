@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="notesApp">
+    <head>
+        <title>Notes App</title>
+    </head>
+    <body ng-controller="MainController as ctrl">
+        <form ng-submit="ctrl.submit()" name="myForm">
+            <input type="text" 
+                   name="uname"
+                   ng-model="ctrl.user.username" 
+                   required
+                   ng-minlength="4"/>
+            <span ng-show="myForm.uname.$error.required">Campo obrigatorio.</span>
+            <span ng-show="myForm.uname.$error.minlength">Minimo de 4 caracteres.</span>
+            <span ng-show="myForm.uname.$invalid">Campo invalido.</span>
+            <br>
+            <input type="password" 
+                   name="upass"
+                   ng-model="ctrl.user.password"
+                   required/>
+            <span ng-show="myForm.upass.$error.required">Campo obrigatorio.</span>
+            <br>
+            <input type="submit" 
+                   value="Submit"
+                   ng-disabled="myForm.$invalid"/>
+        </form>            
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+        <script type="text/javascript">
+            angular.module('notesApp',[])
+                .controller("MainController", [function(){
+                    var self = this;
+                    self.submit = function(){
+                        console.log('Form submit: ', self.user);
+                    };
+                }]);
+        </script>
+    </body>
+</html>
