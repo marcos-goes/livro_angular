@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Filters in Action...</title>
+    </head>
+    <body ng-app="filtersApp">
+
+        <div ng-controller="FilterCtrl as ctrl">
+            <button ng-click="ctrl.currentFilter = 'string'">Filter with String</button>
+            <button ng-click="ctrl.currentFilter = 'object'">Filter with Object</button>
+            <button ng-click="ctrl.currentFilter = 'function'">Filter with Function</button>
+            Filter Text
+            <input type="text" ng-model="ctrl.filterOptions['string']">
+            Show Done Only
+            <input type="checkbox" ng-model="ctrl.filterOptions['object'].done">
+            <ul>
+                <li ng-repeat="note in ctrl.notes |
+                               filter:ctrl.filterOptions[ctrl.currentFilter] |
+                               orderBy:ctrl.sortOrder |
+                               limitTo:8">
+                    {{note.label}} - {{note.type}} - {{note.done}}
+                </li>
+            </ul>
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+        <script type="text/javascript">
+            angular.module('filtersApp', [])
+                .controller('FilterCtrl', [function() {
+                    self = this;
+                    self.notes = [
+                        {label: 'Xucrutes', type:'chore', done: false},
+                        {label: 'Pololo', type:'task', done: false},
+                        {label: 'Wrangler', type:'fun', done: true},
+                        {label: 'Rulumelas', type:'chore', done: false},
+                        {label: 'Mambo', type:'task', done: true},
+                        {label: 'Furicateds', type:'fun', done: true},
+                        {label: 'Siris', type:'chore', done: false},
+                        {label: 'Ytolikan', type:'task', done: false},
+                        {label: 'Lebudaby', type:'fun', done: false}
+                    ];
+                    
+                    self.sortOrder = ['+type', '-label'];
+
+                    self.filterOptions = {
+                      "string": '',
+                      "object": {done: false, label: 'C'},
+                      "function": function(note){
+                          return note.type === 'task' || note.done === false;
+                      }
+                    };
+                    
+                    self.currentFilter = 'string';
+                }]);
+        </script>
+    </body>
+</html>

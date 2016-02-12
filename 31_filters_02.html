@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Filters in Action.</title>
+    </head>
+    <body ng-app="filtersApp">
+        <ul ng-controller="FilterCtrl as ctrl">
+            <li>
+                Amount - {{ctrl.amount}}
+            </li>
+            <li>
+                Amount - Default Currency: {{ctrl.amount | currency}}
+            </li>
+            <li>
+                Amount - Currency Libra: {{ctrl.amount | currency:'&#163'}}
+            </li>
+            <li>
+                Amount - Number: {{ctrl.amount | number}}
+            </li>
+            <li>
+                Amount - Number with 4 decimals: {{ctrl.amount | number:4}}
+            </li>
+            <li>
+                Name - With no filters: {{ctrl.name}}
+            </li>
+            <li>
+                Name - Lowercase: {{ctrl.name | lowercase}}
+            </li>
+            <li>
+                Name - Uppercase: {{ctrl.name | uppercase}}
+            </li>
+            <li>
+                The JSON filter: {{ctrl.obj | json}}
+            </li>
+            <li>
+                Date - Default filter: {{ctrl.startTime | date}}
+            </li>
+            <li>
+                Date - Medium filter: {{ctrl.startTime | date:'medium'}}
+            </li>
+            <li>
+                Date - Custom filter: {{ctrl.startTime | date:'M/dd, yyyy'}}
+            </li>
+            <li>
+                Date - Brazilian: {{ctrl.startTime | date:'dd/MM/yyyy'}}
+            </li>
+            <li>
+                Date - Brazilian Date Time: {{ctrl.startTime | date:'dd/MM/yyyy HH:mm:ss'}}
+            </li>
+            <li>
+                Testando o limitTo 3 com a String "Marcos Goes": {{'Marcos Goes' | limitTo:3}}
+            </li>
+            <li>
+                Testando o limitTo -3 com a String "Marcos Goes": {{'Marcos Goes' | limitTo:-3}}
+            </li>
+            <li>
+                
+            </li>
+        </ul>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+        <script type="text/javascript">
+            angular.module('filtersApp',[])
+                .controller('FilterCtrl', [function(){
+                    this.amount = 10247;
+                    this.name = "Marcos Goes";
+                    this.obj = {test: 'value', num: 123};
+                    this.startTime = new Date().getTime();
+                }])        
+        </script>
+    </body>
+</html>
