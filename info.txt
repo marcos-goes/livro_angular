@@ -1,0 +1,3 @@
+# Para iniciar o Servidor HTTP simples do NodeJS
+# Ref. página 224
+http-server
