@@ -6,7 +6,7 @@ angular.module('stockMarketApp')
          scope : true,
          template :  '<div class="tab-headers">' +
                      '  <div ng-repeat="tab in tabs"' +
-                     '        ng-click="selectedTab($index)"' +
+                     '        ng-click="selectTab($index)"' +
                      '        ng-class="{selected: isSelectedTab($index)}">' +
                      '     <span ng-bind="tab.title"></span>' +
                      '  </div>' +
