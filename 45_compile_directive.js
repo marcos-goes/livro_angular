@@ -18,7 +18,7 @@ angular.module('dynamicFormApp')
             var inputName = $attrs.name;
             angular.forEach(validationKeys, function(validationKey){
                validationKey = angular.element(validationKey);
-               presentValidationKeys[validationKey.attr('ket')] = validationKey.text();
+               presentValidationKeys[validationKey.attr('key')] = validationKey.text();
             });
 
             // Começa a gerar o HTML final do elemento
